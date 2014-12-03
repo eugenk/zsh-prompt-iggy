@@ -7,7 +7,7 @@ Also, you need a powerline patched font. I recommend picking one of these:
 
 I, myself, use mensch-Powerline.
 
-![screen shot 2014-11-15 at 17 37 19](https://cloud.githubusercontent.com/assets/339751/5249189/76a966e8-7981-11e4-8279-39dacc78adb8.png)
+![zsh-prompt-iggy](https://cloud.githubusercontent.com/assets/339751/5286521/58d6f766-7b25-11e4-9174-93d38562f6b1.png)
 
 ## Features
 The status line is divided into many colored segments:
@@ -70,8 +70,3 @@ default_user=eugenk
 but pick your own username ;)
 
 If you don't set this variable, the user@host segment is only displayed, if you are connected via SSH.
-
-## More Screenshots
-![screen shot 2014-11-15 at 17 37 19_annotated](https://cloud.githubusercontent.com/assets/339751/5249199/81bc5306-7981-11e4-8005-69e55b3bf3ba.png)
-![screen shot 2014-11-15 at 17 54 58](https://cloud.githubusercontent.com/assets/339751/5249192/79ba5112-7981-11e4-89cf-8c294e701c54.png)
-![screen shot 2014-11-15 at 18 05 06](https://cloud.githubusercontent.com/assets/339751/5249196/7df0043e-7981-11e4-92e4-f9fd62917ff4.png)
