@@ -377,16 +377,19 @@ prompt_iggy_segment_git_status() {
   local fgc
   local bgc
 
-  # dirty
-  if (( $(echo ${git_info[status]} | wc -w) > 0 )); then
-    fgc=$__prompt_iggy_git_dirty_fg
-    fghc=$__prompt_iggy_git_dirty_fg
-    bgc=$__prompt_iggy_git_dirty_bg
   # stashed
-  elif ( git rev-parse --verify refs/stash > /dev/null 2>&1 ); then
+  git rev-parse --verify refs/stash > /dev/null 2>&1
+  local stashed=$?
+  local num_changes="`echo ${git_info[status]} | wc -w`"
+  if [[ ("$stashed" -eq "0") && ("$num_changes" -le "1") ]]; then
     fgc=$__prompt_iggy_git_stashed_fg
     fghc=$__prompt_iggy_git_stashed_fg
     bgc=$__prompt_iggy_git_stashed_bg
+  # dirty
+  elif [[ ( "$num_changes" -gt "0" ) ]]; then
+    fgc=$__prompt_iggy_git_dirty_fg
+    fghc=$__prompt_iggy_git_dirty_fg
+    bgc=$__prompt_iggy_git_dirty_bg
   # clean
   else
     fgc=$__prompt_iggy_git_ok_fg
