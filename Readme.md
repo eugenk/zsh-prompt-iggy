@@ -5,9 +5,9 @@ Also, you need a powerline patched font. I recommend picking one of these:
 * https://gist.github.com/qrush/1595572
 * https://github.com/Lokaltog/powerline-fonts
 
-I, myself, use mensch-Powerline.
+I, myself, use Menlo-Powerline.
 
-![zsh-prompt-iggy](https://cloud.githubusercontent.com/assets/339751/5286521/58d6f766-7b25-11e4-9174-93d38562f6b1.png)
+![zsh-prompt-iggy](https://cloud.githubusercontent.com/assets/339751/7214708/00d7e8ec-e5b8-11e4-9854-8f203e1380d1.png)
 
 ## Features
 The status line is divided into many colored segments:
@@ -30,7 +30,7 @@ The status line is divided into many colored segments:
   * Current git branch or commit
   * `?` if there are untracked files
   * `✚` if there are added files in the staging area
-  * `✖` if there are deleted files in the staging area
+  * `✖(3:5)` if there are 3 deleted files in the staging area and 5 deleted files not yet staged
   * `➙` if there are renamed/moved files in the staging area
   * `✱` if there are modified files in the staging area
   * `⬆ 3` if you have 3 commits that are not on the remote
