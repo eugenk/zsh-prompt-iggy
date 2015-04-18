@@ -380,8 +380,10 @@ prompt_iggy_segment_git_status() {
   # stashed
   git rev-parse --verify refs/stash > /dev/null 2>&1
   local stashed=$?
+  echo ${git_info[status]} | grep -E '(✚|✖|✱|➙|═|\?)' > /dev/null 2>&1
+  local modified=$?
   local num_changes="`echo ${git_info[status]} | wc -w`"
-  if [[ ("$stashed" -eq "0") && ("$num_changes" -le "1") ]]; then
+  if [[ ("$stashed" -eq "0") && ("$modified" -ne "0") ]]; then
     fgc=$__prompt_iggy_git_stashed_fg
     fghc=$__prompt_iggy_git_stashed_fg
     bgc=$__prompt_iggy_git_stashed_bg
