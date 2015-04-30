@@ -80,6 +80,7 @@ __prompt_iggy_nonzero_exit_glyph="\u2718" # ✘
 __prompt_iggy_superuser_glyph="\u26A1" # ⚡
 __prompt_iggy_bg_job_glyph="\ufe6a" # ﹪
 __prompt_iggy_prompt_sym_glyph="\u276F" # ❯
+__prompt_iggy_prompt_sym_glyph_alt="\u276E" # ❮
 
 
 __prompt_iggy_segment_separator=$__prompt_iggy_right_black_arrow_glyph
@@ -136,9 +137,10 @@ prompt_iggy_setup() {
 
   # Set editor-info parameters.
   zstyle ':prezto:module:editor:info:completing' format '%B%F{red}...%f%b'
-  zstyle ':prezto:module:editor:info:keymap:primary' format '%B%F{208}❯%f%b'
-  zstyle ':prezto:module:editor:info:keymap:primary:overwrite' format '%F{red}♺%f'
-  zstyle ':prezto:module:editor:info:keymap:alternate' format '%B%F{red}❮%f%b'
+  zstyle ':prezto:module:editor:info:keymap:primary' format "%B $__prompt_iggy_prompt_sym_glyph%b"
+  zstyle ':prezto:module:editor:info:keymap:primary:insert' format "%BI$__prompt_iggy_prompt_sym_glyph%b"
+  zstyle ':prezto:module:editor:info:keymap:primary:overwrite' format 'O$__prompt_iggy_prompt_sym_glyph'
+  zstyle ':prezto:module:editor:info:keymap:alternate' format "%B $__prompt_iggy_prompt_sym_glyph_alt%b"
 
   # Set git-info parameters.
   zstyle ':prezto:module:git:info' verbose 'yes'
@@ -171,7 +173,7 @@ prompt_iggy_setup() {
   RPROMPT='%{${_cursorUp}%}$(_clr $__prompt_iggy_date_fg)[$(date)]$(_clr reset)%{${_cursorDown}%}%{%f%b%k%}'
   PROMPT='%{%f%b%k%}
 $(segments)
- $(prompt_iggy_prompt_sym) %{%f%b%k%}'
+$(prompt_iggy_prompt_sym) %{%f%b%k%}'
   SPROMPT='zsh: correct %F{red}%R%f to %F{green}%r%f [nyae]? '
 }
 
@@ -184,7 +186,7 @@ prompt_iggy_prompt_sym() {
     _clr $__prompt_iggy_prompt_sym_ok_fg --bold
   fi
 
-  echo -n $__prompt_iggy_prompt_sym_glyph
+  echo -n ${editor_info[keymap]}
 
   _clr reset
 }
