@@ -151,8 +151,6 @@ prompt_iggy_setup() {
   zstyle ':prezto:module:git:info:branch' format '⭠ %b'
   zstyle ':prezto:module:git:info:commit' format '➦ %.7c'
   zstyle ':prezto:module:git:info:deleted' format ' ✖(%x:%X)'
-  zstyle ':prezto:module:git:info:deleted_staged' format ''
-  zstyle ':prezto:module:git:info:deleted_unstaged' format ''
   zstyle ':prezto:module:git:info:modified' format ' ✱'
   zstyle ':prezto:module:git:info:position' format '%p'
   zstyle ':prezto:module:git:info:renamed' format ' ➙'
@@ -605,11 +603,7 @@ function __prompt_iggy_git_info {
   local deleted_format
   local deleted_formatted
   local deleted_staged=0
-  local deleted_staged_format
-  local deleted_staged_formatted
   local deleted_unstaged=0
-  local deleted_unstaged_format
-  local deleted_unstaged_formatted
   local dirty=0
   local dirty_format
   local dirty_formatted
@@ -847,18 +841,6 @@ function __prompt_iggy_git_info {
       zformat -f deleted_formatted "$deleted_format" "d:$deleted" "x:$deleted_staged" "X:$deleted_unstaged"
     fi
 
-    # Format deleted_staged.
-    if (( deleted_staged > 0 )); then
-      zstyle -s ':prezto:module:git:info:deleted_staged' format 'deleted_staged_format'
-      zformat -f deleted_staged_formatted "$deleted_staged_format" "x:$deleted_staged"
-    fi
-
-    # Format deleted_unstaged.
-    if (( deleted_unstaged > 0 )); then
-      zstyle -s ':prezto:module:git:info:deleted_unstaged' format 'deleted_unstaged_format'
-      zformat -f deleted_unstaged_formatted "$deleted_unstaged_format" "X:$deleted_unstaged"
-    fi
-
     # Format modified.
     if (( modified > 0 )); then
       zstyle -s ':prezto:module:git:info:modified' format 'modified_format'
@@ -903,8 +885,6 @@ function __prompt_iggy_git_info {
       "C:$clean_formatted" \
       "c:$commit_formatted" \
       "d:$deleted_formatted" \
-      "x:$deleted_staged_formatted" \
-      "X:$deleted_unstaged_formatted" \
       "D:$dirty_formatted" \
       "i:$indexed_formatted" \
       "I:$unindexed_formatted" \
