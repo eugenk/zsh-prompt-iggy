@@ -7,7 +7,8 @@ Also, you need a powerline patched font. I recommend picking one of these:
 
 I, myself, use Menlo-Powerline.
 
-![zsh-prompt-iggy](https://cloud.githubusercontent.com/assets/339751/7214708/00d7e8ec-e5b8-11e4-9854-8f203e1380d1.png)
+![zsh-prompt-iggy](https://cloud.githubusercontent.com/assets/339751/7430923/37b81b32-f019-11e4-9ea9-24716c619e1d.png)
+
 
 ## Features
 The status line is divided into many colored segments:
@@ -28,11 +29,13 @@ The status line is divided into many colored segments:
     * yellow: you have a stash
     * red: the working copy is dirty
   * Current git branch or commit
-  * `?` if there are untracked files
+  * `?2` if there are 2 untracked files/directories in the working copy
   * `✚` if there are added files in the staging area
-  * `✖(3:5)` if there are 3 deleted files in the staging area and 5 deleted files not yet staged
+  * `✖` if there are deleted files in the staging area
+  * `✖5` if there are 5 deleted files not yet staged
   * `➙` if there are renamed/moved files in the staging area
   * `✱` if there are modified files in the staging area
+  * `✱2` if there are 2 modified files not yet staged
   * `⬆ 3` if you have 3 commits that are not on the remote
   * `⬇ 5` if there are 5 commits on the remote that you don't have
   * `s7` if you stashed 7 times
