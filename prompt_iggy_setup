@@ -151,7 +151,7 @@ prompt_iggy_setup() {
   zstyle ':prezto:module:git:info:branch' format '⭠ %b'
   zstyle ':prezto:module:git:info:commit' format '➦ %.7c'
   zstyle ':prezto:module:git:info:deleted' format ' ✖(%x:%X)'
-  zstyle ':prezto:module:git:info:modified' format ' ✱'
+  zstyle ':prezto:module:git:info:modified' format ' ✱(%z:%Z)'
   zstyle ':prezto:module:git:info:position' format '%p'
   zstyle ':prezto:module:git:info:renamed' format ' ➙'
   zstyle ':prezto:module:git:info:stashed' format ' s%S'
@@ -616,6 +616,8 @@ function __prompt_iggy_git_info {
   local modified=0
   local modified_format
   local modified_formatted
+  local modified_staged=0
+  local modified_unstaged=0
   local position
   local position_format
   local position_formatted
@@ -818,12 +820,14 @@ function __prompt_iggy_git_info {
     # Get current status.
     while IFS=$'\n' read line; do
       # Count added, deleted, modified, renamed, unmerged, untracked, dirty.
-      [[ "$line" == ([CDMRTUXB\?\ ]A|A[CDMRTUXB\?\ ])\ * ]] && (( added++ ))
-      [[ "$line" == ([ACMRTUXB\?\ ]D|D[ACMRTUXB\?\ ])\ * ]] && (( deleted++ ))
-      [[ "$line" ==                 (D[ACMRTUXB\?\ ])\ * ]] && (( deleted_staged++ ))
-      [[ "$line" == ([ACMRTUXB\?\ ]D)\ * ]]                 && (( deleted_unstaged++ ))
-      [[ "$line" == ([ACDRTUXB\?\ ]M|M[ACDRTUXB\?\ ])\ * ]] && (( modified++ ))
-      [[ "$line" == ([ACDMTUXB\?\ ]R|R[ACDMTUXB\?\ ])\ * ]] && (( renamed++ ))
+      [[ "$line" ==  ([CDMRTUXB\?\ ]A|A[CDMRTUXB\?\ ])\ * ]]  && (( added++ ))
+      [[ "$line" == ([ACDMRTUXB\?\ ]D|D[ACDMRTUXB\?\ ])\ * ]] && (( deleted++ ))
+      [[ "$line" ==                   (D[ACMRTUXB\?\ ])\ * ]] && (( deleted_staged++ ))
+      [[ "$line" == ([ACMRTUXB\?\ ]D)\ * ]]                   && (( deleted_unstaged++ ))
+      [[ "$line" == ([ACDMRTUXB\?\ ]M|M[ACDMRTUXB\?\ ])\ * ]] && (( modified++ ))
+      [[ "$line" ==                  (M[ACDMRTUXB\?\ ])\ * ]] && (( modified_staged++ ))
+      [[ "$line" == ([ACDMRTUXB\?\ ]M)\ * ]]                  && (( modified_unstaged++ ))
+      [[ "$line" == ([ACDMRTUXB\?\ ]R|R[ACDMRTUXB\?\ ])\ * ]] && (( renamed++ ))
       [[ "$line" == (AA|DD|U\?|\?U)\ * ]] && (( unmerged++ ))
       [[ "$line" == \?\?\ * ]] && (( untracked++ ))
       (( dirty++ ))
@@ -844,7 +848,7 @@ function __prompt_iggy_git_info {
     # Format modified.
     if (( modified > 0 )); then
       zstyle -s ':prezto:module:git:info:modified' format 'modified_format'
-      zformat -f modified_formatted "$modified_format" "m:$modified"
+      zformat -f modified_formatted "$modified_format" "m:$modified" "z:$modified_staged" "Z:$modified_unstaged"
     fi
 
     # Format renamed.
