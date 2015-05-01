@@ -52,6 +52,8 @@ The arrowhead symbol in the second line is colored depending on the state:
 * red: last exit code was not 0
 * green: you have super powers
 
+If it points to the left, you entered the alternate mode (e.g. "normal mode" for vi key bindings).
+
 ## Installation
 Make sure, that your terminal is running with 256 colors support. Some terminals support setting this in their preferences, like iterm2 for OS X. The default terminal for Gnome, for example, has no such option. There, you need to set `TERM=xterm-256color` in your `~/.zshrc`.
 
