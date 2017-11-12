@@ -1,3 +1,10 @@
+# Deprecation
+This prompt is not being actively developed any more.
+I switched to a prompt based on [powerlevel9k](https://github.com/bhilburn/powerlevel9k).
+My powerlevel9k-config is saved in [this gist](https://gist.github.com/eugenk/1b87f04e37f365fa1fb29551befed0fb).
+It needs to be loaded before the prompt itself.
+The powerlevel9k-prompt looks and feels very similar to the prompt of this repository, but it has some more features.
+
 # iggy
 iggy is a super happy awesome Powerline-style, Git-aware prezto theme.
 [Prezto](https://github.com/sorin-ionescu/prezto) and its [`git` module](https://github.com/sorin-ionescu/prezto/tree/master/modules/git) are required to use this.
